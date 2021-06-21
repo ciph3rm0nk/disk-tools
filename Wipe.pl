@@ -1,5 +1,10 @@
 #!/usr/env perl
 
+=head2
+	Wipe Disk using DCFLDD or DC3DD, three times. 
+	Requires Term::Choose and DCFLDD or DC3DD, and a Unixish OS (maybe just linux)
+=cut
+
 use strict;
 use warnings;
 use Term::Choose qw( choose );
@@ -46,9 +51,9 @@ if (scalar @disks > 0 ) {
 
 		my $dcfldd_disks = join(' ', @ofs);
 		
-		system( qq( echo if=/dev/zero $dcfldd_disks conv=notrunc,noerror bs=2M ) );
-		system( qq( echo pattern=FF $dcfldd_disks conv=notrunc,noerror bs=2M ) );
-		system( qq( echo if=/dev/zero $dcfldd_disks conv=notrunc,noerror bs=2M ) );
+		system( qq( $command if=/dev/zero $dcfldd_disks conv=notrunc,noerror bs=2M ) );
+		system( qq( $command pattern=FF $dcfldd_disks conv=notrunc,noerror bs=2M ) );
+		system( qq( $command if=/dev/zero $dcfldd_disks conv=notrunc,noerror bs=2M ) );
 
 
 	} else {
