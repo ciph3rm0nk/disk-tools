@@ -54,22 +54,22 @@ if (scalar @disks > 0 ) {
 		my $dcfldd_disks = join(' ', @ofs);
 		# chomp ($dcfldd_disks);
 
-		my @run0 = ($command, "if=/dev/zero", $dcfldd_disks, "conv=notrunc,noerror", "bs=2M");
-		my @run1 = ($command, "pattern=FF", $dcfldd_disks, "conv=notrunc,noerror", "bs=2M");
+		my $run0 = qq($command if=/dev/zero $dcfldd_disks conv=notrunc,noerror bs=2M);
+		my $run1 = qq($command pattern=FF $dcfldd_disks conv=notrunc,noerror bs=2M);
 
 
 
 
 		print "Running First Pass: Zeros to Disk\n";
-		print @run0;
-		system(@run0);
+		print $run0;
+		system($run0);
 
 		print "Running Second Pass: Ones to Disk\n";
-		print @run1;
-		system(@run1);
+		print $run1;
+		system($run1);
 		
 		print "Running Third Pass: Zeros to Disk\n";
-		system(@run0);
+		system($run0);
 
 
 	} else {
