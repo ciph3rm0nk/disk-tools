@@ -1,4 +1,4 @@
-#!/usr/env perl
+#!/usr/bin/env perl
 
 =head2
 	Wipe Disk using DCFLDD or DC3DD, three times. 
