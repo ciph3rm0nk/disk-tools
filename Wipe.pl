@@ -50,9 +50,14 @@ if (scalar @disks > 0 ) {
 		}
 
 		my $dcfldd_disks = join(' ', @ofs);
-		
+
+		print "Running First Pass: Zeros to Disk";
 		system( qq( $command if=/dev/zero $dcfldd_disks conv=notrunc,noerror bs=2M ) );
+
+		print "Running Second Pass: Ones to Disk";
 		system( qq( $command pattern=FF $dcfldd_disks conv=notrunc,noerror bs=2M ) );
+		
+		print "Running Third Pass: Zeros to Disk";
 		system( qq( $command if=/dev/zero $dcfldd_disks conv=notrunc,noerror bs=2M ) );
 
 
